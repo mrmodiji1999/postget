@@ -8,6 +8,10 @@ class PostsInitial extends PostsState {}
 
 class PostsFetchingLoadingState extends PostsState {}
 
+class Postrefreshstate extends PostsState {
+ 
+}
+
 class PostsFetchingErrorState extends PostsState {}
 
 class PostFetchingSuccessfulState extends PostsState {

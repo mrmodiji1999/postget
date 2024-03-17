@@ -42,6 +42,10 @@ class _PostsPageState extends State<PostsPage> {
                 return const Center(
                   child: CircularProgressIndicator(),
                 );
+              case Postrefreshstate:
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               case PostsAdditionErrorState:
                 return const Column(
                   children: [Text('data')],
@@ -55,15 +59,15 @@ class _PostsPageState extends State<PostsPage> {
 
                 return Container(
                   child: ListView.builder(
-                    itemCount: successState.posts[0].products.length,
+                    itemCount: successState.posts.length,
                     itemBuilder: (context, index) {
                       return Container(
                           color: Colors.grey.shade200,
                           padding: const EdgeInsets.all(16),
                           margin: const EdgeInsets.all(16),
                           child: ListTile(
-                            title: Text(successState
-                                .posts[0].products[index].description),
+                            leading: Text(successState.posts.length.toString()),
+                            // title: Text(successState.posts[index].firstName),
                           ));
                     },
                   ),

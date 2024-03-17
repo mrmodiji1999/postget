@@ -4,12 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:postget/features/posts/bloc/posts_event.dart';
 import 'package:postget/features/posts/bloc/posts_state.dart';
 import 'package:postget/features/posts/models/post_data_ui_model.dart';
+import 'package:postget/features/posts/repos/dddio.dart';
 import 'package:postget/features/posts/repos/posts_repo.dart';
 
 class PostsBloc extends Bloc<PostsEvent, PostsState> {
   PostsBloc() : super(PostsInitial()) {
     on<PostsInitialFetchEvent>(postsInitialFetchEvent);
     on<PostAddEvent>(postAddEvent);
+    on<PostrefreshEvent>(postrefreshEvent);
   }
 
   FutureOr<void> postsInitialFetchEvent(
@@ -29,5 +31,8 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
     } else {
       emit(PostsAdditionErrorState());
     }
+  }
+
+  FutureOr<void> postrefreshEvent(PostrefreshEvent event, Emitter<PostsState> emit) {
   }
 }

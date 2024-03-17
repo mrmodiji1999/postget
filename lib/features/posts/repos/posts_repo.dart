@@ -10,20 +10,18 @@ class PostsRepo {
     List<PostDataUiModel> posts = [];
     try {
       var response =
-          await client.get(Uri.parse('https://dummyjson.com/products'));
+          await client.get(Uri.parse('http://localhost:3000/persons'));
 
       dynamic responseData = jsonDecode(response.body);
 
-      if (responseData is List) {
-        for (int i = 0; i < responseData.length; i++) {
-          PostDataUiModel post =
-              PostDataUiModel.fromJson(responseData[i] as Map<String, dynamic>);
-          posts.add(post);
-        }
-      } else if (responseData is Map<String, dynamic>) {
-        PostDataUiModel post = PostDataUiModel.fromJson(responseData);
+      for (int i = 0; i < responseData.length; i++) {
+        PostDataUiModel post =
+            PostDataUiModel.fromJson(responseData[i] as Map<String, dynamic>);
         posts.add(post);
       }
+
+      // PostDataUiModel post = PostDataUiModel.fromJson(responseData);
+      // posts.add(post);
 
       return posts;
     } catch (e) {
@@ -41,15 +39,15 @@ class PostsRepo {
       };
 
       var body = jsonEncode({
-        "firstName": "narendra",
-        "lastName": "jangid",
+        "firstName": "sir",
+        "lastName": "ji",
         "age": 26,
-        "address": "jaipur,raj",
-        "phoneNumbers": "8092490"
+        "address": "ha,raj",
+        "phoneNumbers": "jaksd"
       });
 
       var response = await client.post(
-        Uri.parse('https://dummyjson.com/products'),
+        Uri.parse('http://localhost:3000/persons'),
         headers: headers,
         body: body,
       );
